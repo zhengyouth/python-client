@@ -115,22 +115,29 @@ The methods that do change are...
 
 ### Switching between 'Native' and 'Webview'
 
-### 在'Native'和'Webview'之间切换
-For mobile testing the Selnium methods for switching between windows was previously
+### 'Native'和'Webview'之间的切换
+For mobile testing the Selenium methods for switching between windows was previously
 commandeered for switching between native applications and webview contexts. Methods
 explicitly for this have been added to the Selenium 3 specification, so moving
 forward these 'context' methods are to be used.
 
+对于移动测试，之前在窗口之间切换的Selenium方法是被强征的：本地应用程序和webview上下文之间的切换
+Selenium3规范中明确增加了这个方法。因此需要移动来使用这些上context的方法
 
 
 To get the current context, rather than calling `driver.current_window_handle` you
 use
+
+获取当前的context，不再是调用‘driver.current_window_handle’
 
 ```python
 current = driver.current_context
 ```
 
 The available contexts are not retrieved using `driver.window_handles` but with
+
+使用‘driver.window_handles’时，可用的contexts没有被检索到，可以使用
+
 
 ```python
 driver.contexts
@@ -139,6 +146,8 @@ driver.contexts
 Finally, to switch to a new context, rather than `driver.switch_to.window(name)`,
 use the comparable context method
 
+最后，使用 comparable context方法去切换一个新的context，而不是使用`driver.switch_to.window(name)`
+
 ```python
 context_name = "WEBVIEW_1"
 driver.switch_to.context(context_name)
@@ -146,10 +155,13 @@ driver.switch_to.context(context_name)
 
 
 ### Finding elements by iOS UIAutomation search
+### 通过iOS UiAutomation查找元素
 
 This allows elements in iOS applications to be found using recursive element
 search using the UIAutomation library. This method is supported on iOS devices
 that still support UIAutomation, that is, versions which predate XCUITEST.
+
+
 
 Adds the methods `driver.find_element_by_ios_uiautomation`
 and `driver.find_elements_by_ios_uiautomation`.
@@ -166,10 +178,14 @@ self.assertIsInstance(els, list)
 
 
 ### Finding elements by Android UIAutomator search
+### 通过Android UiAutomator查找元素
 
 This allows elements in an Android application to be found using recursive element
 search using the UIAutomator library. Adds the methods `driver.find_element_by_android_uiautomator`
 and `driver.find_elements_by_android_uiautomator`.
+
+可以使用UiAutomator的库递归搜索android应用界面上所有的元素。添加`driver.find_element_by_android_uiautomator`
+和`driver.find_elements_by_android_uiautomator`。
 
 ```python
 el = self.driver.find_element_by_android_uiautomator('new UiSelector().description("Animation")')
@@ -183,10 +199,13 @@ self.assertIsInstance(els, list)
 
 
 ### Finding elements by iOS predicates
+### 通过iOS predicates查看元素
 
 This method allows finding elements using iOS predicates. The methods take a
 string in the format of a predicate, including element type and the value of
 fields.
+
+使用iOS predicates这种方法允许查找元素。
 
 Adds the methods
 `driver.find_element_by_ios_predicate` and `find_elements_by_ios_predicate`.
@@ -203,6 +222,7 @@ self.assertIsInstance(els, list)
 
 
 ### Finding elements by iOS class chain
+### 通过iOS的class chain查找元素
 
 **This method is only for [XCUITest driver](https://github.com/appium/appium-xcuitest-driver)**
 
@@ -224,6 +244,7 @@ self.assertIsInstance(els, list)
 
 ### Finding elements by Accessibility ID
 
+
 Allows for elements to be found using the "Accessibility ID". The methods take a
 string representing the accessibility id or label attached to a given element, e.g., for iOS the accessibility identifier and for Android the content-description. Adds the methods
 `driver.find_element_by_accessibility_id` and `find_elements_by_accessibility_id`.
@@ -240,19 +261,33 @@ self.assertIsInstance(els, list)
 
 
 ### Touch actions
+### 触摸操作
 
 In order to accommodate mobile touch actions, and touch actions involving
 multiple pointers, the Selenium 3.0 draft specifies ["touch gestures"](https://dvcs.w3.org/hg/webdriver/raw-file/tip/webdriver-spec.html#touch-gestures) and ["multi actions"](https://dvcs.w3.org/hg/webdriver/raw-file/tip/webdriver-spec.html#multiactions-1), which build upon the touch actions.
 
+为了支持移动触摸操作和多点触摸操作。Selenium3.0草案中指定了[手势触摸](https://dvcs.w3.org/hg/webdriver/raw-file/tip/webdriver-spec.html#touch-gestures)和[多点触摸](https://dvcs.w3.org/hg/webdriver/raw-file/tip/webdriver-spec.html#multiactions-1),
+只要建立在这些触摸操作之上，都能很好的支持
+
+
 move_to: note that use keyword arguments if no element
+
+move_to: 注意，如果没有元素请使用关键字参数
 
 The API is built around `TouchAction` objects, which are chains of one or more actions to be performed in a sequence. The actions are:
 
+这个API是围绕‘TouchAction’对象构建的，每一个链都是在一个序列中的一个或多个动作。这个Action是：
+
 #### `perform`
+#### 'perform'
 
 The `perform` method sends the chain to the server in order to be enacted. It also empties the action chain, so the object can be reused. It will be at the end of all single action chains, but is unused when writing multi-action chains.
 
+‘perform’方法的目的是为了制定链到服务之间的发送。它也会清空这个动作链，所以对象可以被重用。它将在所有单一动作链的末端，但是在编写多动作链的时候，它是没用的
+
+
 #### `tap`
+#### ‘tap’
 
 The `tap` method stands alone, being unable to be chained with other methods. If you need a `tap`-like action that starts a longer chain, use `press`.
 
@@ -280,6 +315,7 @@ self.assertIsNotNone(el)
 
 
 ### Multi-touch actions
+### 多点触摸操作
 
 In addition to chains of actions performed with in a single gesture, it is also possible to perform multiple chains at the same time, to simulate multi-finger actions. This is done through building a `MultiAction` object that comprises a number of individual `TouchAction` objects, one for each "finger".
 
@@ -335,16 +371,22 @@ Zoom out on an element, doing a pinch in operation.
 
 
 ### Application management methods
+### 应用管理方法
 
 There are times when you want, in your tests, to manage the running application,
 such as installing or removing an application, etc.
 
+在测试中，有些时候，你想要管理、运行应用，比如：安装或者移除一个应用等等
 
-#### Backgrounding an application
+####   an application
+####   一个应用
 
 The method `driver.background_app` sends the running application to the background
 for the specified amount of time, in seconds. After that time, the application is
 brought back to the foreground.
+
+‘river.background_app()这个方法，可以使一个正在运行的应用进入到后台模式并指定后台模式的时间(短时间范围内)，
+指定时间结束后，应用会返回到前台模式
 
 ```python
 driver.background_app(1)
@@ -355,10 +397,14 @@ assertIsNotNone(el)
 
 
 #### Checking if an application is installed
+#### 检查是否安装了应用程序
 
 To check if an application is currently installed on the device, use the `device.is_app_installed`
 method. This method takes the bundle id of the application and return `True` or
 `False`.
+
+device.is_app_installed()方法，检查一个应用程序是否被安装在当前设备上。这个方法将会绑定应用ID，
+以及返回值为"true"或"false"
 
 ```python
 assertFalse(self.driver.is_app_installed('sdfsdf'))
@@ -367,10 +413,12 @@ assertTrue(self.driver.is_app_installed('com.example.android.apis'))
 
 
 #### Installing an application
-
+#### 安装一个应用
 To install an uninstalled application on the device, use `device.install_app`,
 sending in the path to the application file or archive.
 
+device.install_app()方法：用于在设备上安装一个未安装的应用，
+参数传入一个应用的路径或者档案文件。
 ```python
 assertFalse(driver.is_app_installed('io.selendroid.testapp'))
 driver.install_app('/Users/isaac/code/python-client/test/apps/selendroid-test-app.apk')
@@ -379,9 +427,11 @@ assertTrue(driver.is_app_installed('io.selendroid.testapp'))
 
 
 #### Removing an application
-
+#### 移除一个应用
 If you need to remove an application from the device, use `device.remove_app`,
 passing in the application id.
+
+device.remove_app()方法,用于在设备上移除一个应用，传入应用的包名
 
 ```python
 assertTrue(driver.is_app_installed('com.example.android.apis'))
@@ -391,10 +441,12 @@ assertFalse(driver.is_app_installed('com.example.android.apis'))
 
 
 #### Closing and Launching an application
-
+#### 关闭和启动一个应用程序
 To launch the application specified in the desired capabilities, call `driver.launch_app`.
 Closing that application is initiated by `driver.close_app`
 
+driver.launch_app()方法，用于在一个desired capabilities中去启动一个应用程序
+driver.close_app()方法，用于在一个desired capabilities中去关闭一个应用程序
 ```python
 el = driver.find_element_by_name('Animation')
 assertIsNotNone(el)
@@ -411,8 +463,9 @@ assertIsNotNone(el)
 ```
 
 #### Resetting an application
-
+#### 重置一个应用
 To reset the running application, use `driver.reset`.
+driver.reset()方法，用于重置正在运行的应用
 
 ```python
 el = driver.find_element_by_name('App')
@@ -427,13 +480,17 @@ assertIsNotNone(el)
 
 
 ### Other methods
-
+### 其他的方法
 
 #### Start an arbitrary activity
+#### 开始一个任意Activiy
 
 The `driver.start_activity` method opens arbitrary activities on a device.
 If the activity is not part of the application under test, it will also
 launch the activity's application.
+
+driver.start_activity("包名","Activity名")方法，在设备上打开任意一个Activity
+如果这个Activity不是测试应用中的一部分，它也会启动这个Activity
 
 ```python
 driver.start_activity('com.foo.app', '.MyActivity')
@@ -441,6 +498,7 @@ driver.start_activity('com.foo.app', '.MyActivity')
 
 
 #### Retrieving application strings
+#### 检索应用程序的字符串
 
 The property method `driver.app_strings` returns the application strings from
 the application on the device.
