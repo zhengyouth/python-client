@@ -53,7 +53,7 @@ implement the new specification that implementation will be used underneath, so
 test code can be written that is utilizable with both bindings。
 
 
-Appium Python客户端严格遵循Selenium 3.0规范，再加上一些辅助说明在python上实现移动测试更加简单。
+Appium Python客户端严格遵循Selenium 3.0规范，再加上一些帮助文档在python上实现移动测试更加简单。
 大多数的用法从Selenium2(WebDriver)延续了下来,而作为[official Selenium Python bindings](https://pypi.python.org/pypi/selenium)
 开始实现新的规范，该实现将被使用在底层。所以，可以使用两种绑定来编写测试代码。
 
