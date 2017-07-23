@@ -498,10 +498,12 @@ driver.start_activity('com.foo.app', '.MyActivity')
 
 
 #### Retrieving application strings
-#### 检索应用程序的字符串
+#### 获取应用程序的字符串
 
 The property method `driver.app_strings` returns the application strings from
 the application on the device.
+
+driver.app_strings属性方法，可以返回应用在设备上显示的字符串
 
 ```python
 strings = driver.app_strings
@@ -509,10 +511,12 @@ strings = driver.app_strings
 
 
 #### Sending a key event to an Android device
-
+#### 向android设备中发送一个keyCode事件
 The `driver.keyevent` method sends a keycode to the device. The keycodes can be
 found [here](http://developer.android.com/reference/android/view/KeyEvent.html).
 Android only.
+driver.keyevent方法，像一个设备中发送keycode事件。关于keycodes事件可以查找[here](http://developer.android.com/reference/android/view/KeyEvent.html)
+只适用于android
 
 ```python
 # sending 'Home' key event
@@ -521,11 +525,14 @@ driver.press_keycode(3)
 
 
 #### Hiding the keyboard in iOS
+#### ios中隐藏的按键
 
 To hide the keyboard from view in iOS, use `driver.hide_keyboard`. If a key name
 is sent, the keyboard key with that name will be pressed. If no arguments are
 passed in, the keyboard will be hidden by tapping on the screen outside the text
 field, thus removing focus from it.
+
+
 
 ```python
 # get focus on text field, so keyboard comes up
@@ -555,9 +562,12 @@ assertFalse(el.is_displayed())
 
 
 #### Retrieving the current running package and activity
+#### 获取当前运行应用的包名和Activity名
 
 The property method `driver.current_package` returns the name of the current
 package running on the device.
+
+driver.current_package属性方法，可以返回正在设备当前界面上运行的应用程序的包名
 
 ```python
 package = driver.current_package
@@ -567,6 +577,8 @@ assertEquals('com.example.android.apis', package)
 The property method `driver.current_activity` returns the name of the current
 activity running on the device.
 
+driver.current_activity属性方法，可以返回正在设备当前界面上运行的应用程序的Activity名
+
 ```python
 activity = driver.current_activity
 assertEquals('.ApiDemos', activity)
@@ -574,9 +586,13 @@ assertEquals('.ApiDemos', activity)
 
 
 #### Set a value directly on an element
+#### 在一个控件元素上设置直面量
 
 Sometimes one needs to directly set the value of an element on the device. To do
 this, the method `driver.set_value` or `element.set_value` is invoked.
+
+element.set_value()属性方法，有事需要在设备上的控件元素中设置一个直面量，
+可以使用该方法，也可以使用driver.set_value()
 
 ```python
 el = driver.find_element_by_class_name('android.widget.EditText')
@@ -592,9 +608,12 @@ assertEqual('More testing', text)
 
 
 #### Retrieve a file from the device
+#### 从设备中获取(pull)一个文件
 
 To retrieve the contents of a file from the device, use `driver.pull_file`, which
 returns the contents of the specified file encoded in [Base64](https://docs.python.org/2/library/base64.html).
+
+driver.pull_file()属性方法，用于从设备中获取一个文件的内容，返回指定文件编码[Base64](https://docs.python.org/2/library/base64.html)的内容
 
 ```python
 # pulling the strings file for our application
@@ -605,10 +624,12 @@ assertEqual('You can\'t wipe my data, you are a monkey!', strings[u'monkey_wipe_
 
 
 #### Place a file on the device
+#### 向设备中push一个文件
 
 To put a file onto the device at a particular place, use the `driver.push_file`
 method, which takes the path and the data, encoded as [Base64](https://docs.python.org/2/library/base64.html), to be written to the file.
 
+driver.push_file()方法，向设备中push一个文件到指定的目录上，需要指定路径和数据，使用[Base64](https://docs.python.org/2/library/base64.html)编码写入文件
 ```python
 path = 'data/local/tmp/test_push_file.txt'
 data = 'This is the contents of the file to push to the device.'
@@ -619,6 +640,7 @@ self.assertEqual(data, data_ret)
 
 
 #### End test coverage
+#### 测试报告
 
 There is functionality in the Android emulator to instrument certain activities.
 For information on this, see the [Appium docs](https://github.com/appium/appium/blob/master/docs/en/android_coverage.md). To end this coverage
@@ -626,27 +648,40 @@ and retrieve the data, use `driver.end_test_coverage`, passing in the `intent`
 that is being instrumentalized, and the path to the `coverage.ec` file on the
 device.
 
+android模拟器的instrument一些功能可以测试某些活动 ，这个信息可以查看[Apium docs](https://github.com/appium/appium/blob/master/docs/en/android_coverage.md)。
+结束这个测试，获取测试数据，使用driver.end_test_coverage()方法,通过‘intent’初始化工具，path指定输出报告在设备上的存储目录
+
+
 ```python
 coverage_ec_file = driver.end_test_coverage(intent='android.intent.action.MAIN', path='')
 ```
 
 
 #### Lock the device
+#### 设备锁
 
 To lock the device for a certain amount of time, on iOS, use `driver.lock`. The
 argument is the number of seconds to wait before unlocking.
 
+iso中的driver.lock(argument) 方法，这个参数是在解锁钱等待的秒数
 
 #### Shake the device
+#### 设备震动
 
 To shake the device, use `driver.shake`.
 
+driver.shake(),震动设备
 
 #### Appium Settings
+#### Appium设置
 
 Settings are a new concept introduced by appium. They are currently not a part of the Mobile JSON Wire Protocol, or the Webdriver spec.
 
+设置是Appium引入的新观点，并不是Mobile JSON Wire Protocol和webdriver规范的一部分
+
 Settings are a way to specify the behavior of the appium server.
+
+设置是一种指定Appium服务行为的方法。
 
 Settings are:
 
