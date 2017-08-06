@@ -1,30 +1,22 @@
-Appium Python Client
+Appium Python 客户端
 ====================
 
-An extension library for adding [Selenium 3.0 draft](https://dvcs.w3.org/hg/webdriver/raw-file/tip/webdriver-spec.html) and [Mobile JSON Wire Protocol Specification draft](https://code.google.com/p/selenium/source/browse/spec-draft.md?repo=mobile)
-functionality to the Python language bindings, for use with the mobile testing
-framework [Appium](https://appium.io).
+它是[Selenium3.0版本](https://dvcs.w3.org/hg/webdriver/raw-file/tip/webdriver-spec.html)和[移动JSON协议规范版本](https://code.google.com/p/selenium/source/browse/spec-draft.md?repo=mobile)
+的扩展库，功能支持python语言的绑定，用于移动测试
 
-作为一个[Selenium 3.0 草案](https://dvcs.w3.org/hg/webdriver/raw-file/tip/webdriver-spec.html)和[移动JSON线协议规范草案](https://code.google.com/p/selenium/source/browse/spec-draft.md?repo=mobile)
-
-# Getting the Appium Python client
 # 获取Appium python 客户端
-There are three ways to install and use the Appium Python client.
 
 这里有三种方式安装和使用Appiun客户端
-1. Install from [PyPi](https://pypi.python.org/pypi), as
-['Appium-Python-Client'](https://pypi.python.org/pypi/Appium-Python-Client).
 
-1.通过[PyPi](https://pypi.python.org/pypi)上进行安装[Appium-Python-Client](https://pypi.python.org/pypi/Appium-Python-Client)
+1.通过[PyPi](https://pypi.python.org/pypi)上进行安装[Appium-Python-客户端](https://pypi.python.org/pypi/Appium-Python-Client)
+
 
     ```shell
+	
     pip install Appium-Python-Client
     ```
-
-2. Install from source, via [PyPi](https://pypi.python.org/pypi). From ['Appium-Python-Client'](https://pypi.python.org/pypi/Appium-Python-Client),
-download and unarchive the source tarball (Appium-Python-Client-X.X.tar.gz).
-
-2. 源文件安装，通过[PyPi](https://pypi.python.org/pypi)下载['Appium Python客户端'](https://pypi.python.org/pypi/Appium-Python-Client)
+	
+2. 通过[PyPi](https://pypi.python.org/pypi)下载['Appium Python客户端'](https://pypi.python.org/pypi/Appium-Python-Client)
 并解压压缩包(Appium-Python-Client-X.X.tar.gz)
 
     ```shell
@@ -33,27 +25,16 @@ download and unarchive the source tarball (Appium-Python-Client-X.X.tar.gz).
     python setup.py install
     ```
 
-3. Install from source via [GitHub](https://github.com/appium/python-client).
-
-3. [GitHub](https://github.com/appium/python-client)源文件安装
+3. 通过[GitHub](https://github.com/appium/python-client)安装
     ```shell
     git clone git@github.com:appium/python-client.git
     cd python-client
     python setup.py install
     ```
 
-
-# Usage
 # 用法
-The Appium Python Client is fully compliant with the Selenium 3.0 specification
-draft, with some helpers to make mobile testing in Python easier. The majority of
-the usage remains as it has been for Selenium 2 (WebDriver), and as the [official
-Selenium Python bindings](https://pypi.python.org/pypi/selenium) begins to
-implement the new specification that implementation will be used underneath, so
-test code can be written that is utilizable with both bindings。
 
-
-Appium Python客户端严格遵循Selenium 3.0规范，再加上一些帮助文档在python上实现移动测试更加简单。
+Appium Python客户端严格遵循Selenium3.0版本规范，再加上一些辅助文档在python上实现移动测试更加简单。
 大多数的用法从Selenium2(WebDriver)延续了下来,而作为[official Selenium Python bindings](https://pypi.python.org/pypi/selenium)
 开始实现新的规范，该实现将被使用在底层。所以，可以使用两种绑定来编写测试代码。
 
@@ -61,20 +42,16 @@ To use the new functionality now, and to use the superset of functions, instead 
 including the Selenium `webdriver` module in your test code, use that from
 Appium instead.
 
-开始使用新的功能，并且使用超集函数。不是Selenium测试代码中的'webdriver'模块，而是使用Appium代替
+现在使用新的功能引用超集函数。在测试代码中，不是Selenium测试代码中的'webdriver'模块，而是使用Appium代替
 
 
 ```python
 from appium import webdriver
 ```
 
-From there much of your test code will work with no change.
 大多数代码将不会被改变
 
-As a base for the following code examples, the following sets up the [UnitTest](https://docs.python.org/2/library/unittest.html)
-environment:
-
-下面的代码最为一个基础的实例，建立[UniTest](https://docs.python.org/2/library/unittest.html)环境：
+以下的代码最为一个基础的实例，下面建立[UniTest](https://docs.python.org/2/library/unittest.html)环境：
 
 ```python
 # Android environment
@@ -121,7 +98,8 @@ commandeered for switching between native applications and webview contexts. Met
 explicitly for this have been added to the Selenium 3 specification, so moving
 forward these 'context' methods are to be used.
 
-对于移动测试，之前在窗口之间切换的Selenium方法是被强征的：本地应用程序和webview上下文之间的切换
+对于移动测试，之前在窗口之间切换的Selenium方法是被强征的：本地应用程序和webview上下文之间的切换。
+
 Selenium3规范中明确增加了这个方法。因此需要移动来使用这些上context的方法
 
 
